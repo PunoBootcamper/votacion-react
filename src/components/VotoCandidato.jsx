@@ -1,10 +1,17 @@
 import { PropTypes } from "prop-types";
+import "./VotoCandidato.css";
 
 const VotoCandidato = ({ nombre, votar }) => {
   return (
-    <div>
+    <div className="container__candidate">
       <h2>{nombre}</h2>
-      <button onClick={votar}>Votar</button>
+      <button
+        onClick={() => {
+          votar(nombre);
+        }}
+      >
+        {`Votar por ${nombre}`}
+      </button>
     </div>
   );
 };
