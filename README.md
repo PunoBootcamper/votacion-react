@@ -2,6 +2,8 @@
 
 Esta es una solución para la gestión de votaciones utilizando React, desarrollada como parte del curso Make It Real.
 
+En este [enlace](https://punobootcamper.github.io/votacion-react/) puedes ver el resultado.
+
 ## Tabla de contenidos
 
 - [Descripción General](#descripción-general)
