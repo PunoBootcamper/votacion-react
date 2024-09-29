@@ -36,6 +36,8 @@ Los usuarios deben ser capaces de:
 - PropTypes - Validación de tipos para asegurar que los componentes reciben las props correctas.
 - JavaScript (ES6+) - Manejo de la lógica de votaciones y filtros.
 - CSS - Para estilos de la aplicación.
+- useReducer - para acciones complejas
+- useContext - para uso complejo de variables
 
 ### Lo que Aprendi
 
