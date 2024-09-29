@@ -2,6 +2,8 @@ import { useState } from "react";
 import VotoCandidato from "./components/VotoCandidato";
 import Total from "./components/Total";
 import "./App.css";
+import FilteredVotes from "./components/FilteredVotes";
+import Filter from "./components/Filter";
 
 function App() {
   const candidates = {
@@ -12,6 +14,10 @@ function App() {
   };
 
   const [votes, setVotes] = useState(candidates);
+
+  const [filter, setFilter] = useState("PERCENTAGE");
+
+  const [filterCheck, setFilterCheck] = useState(Object.keys(candidates));
 
   const handleVote = (name) => {
     setVotes((prevVotes) => {
@@ -29,8 +35,25 @@ function App() {
         ))}
       </div>
 
-      <div className="container__votes">
-        <Total votes={votes} />
+      <div className="container__main">
+        <div className="container__filter">
+          <Filter
+            filter={filter}
+            setFilter={setFilter}
+            filterCheck={filterCheck}
+            setFilterCheck={setFilterCheck}
+            candidates={Object.keys(candidates)}
+          />
+        </div>
+
+        <div className="container__votes">
+          <Total votes={votes} />
+          <FilteredVotes
+            votes={votes}
+            filter={filter}
+            filterCheck={filterCheck}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import { PropTypes } from "prop-types";
-import "./VotoCandidato.css";
 
 const VotoCandidato = ({ nombre, votar }) => {
   return (
