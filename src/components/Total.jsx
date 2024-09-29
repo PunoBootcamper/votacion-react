@@ -1,17 +1,20 @@
-import { PropTypes } from "prop-types";
+import { useCandidates } from "../hooks/useCandidates";
 
-const Total = ({ votes }) => {
+const Total = () => {
+  const { state } = useCandidates();
+  const { candidates } = state;
+
   return (
     <div className="container_total">
       <h2>
-        Total {Object.keys(votes).reduce((acc, name) => acc + votes[name], 0)}
+        Total{" "}
+        {Object.keys(candidates).reduce(
+          (acc, name) => acc + candidates[name],
+          0
+        )}
       </h2>
     </div>
   );
-};
-
-Total.propTypes = {
-  votes: PropTypes.object.isRequired,
 };
 
 export default Total;

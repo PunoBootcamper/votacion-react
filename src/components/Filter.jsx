@@ -1,30 +1,39 @@
-import { PropTypes } from "prop-types";
 import Checkbox from "./CheckBox";
+import { useCandidates } from "../hooks/useCandidates";
 
-const Filter = ({
-  filter,
-  setFilter,
-  filterCheck,
-  setFilterCheck,
-  candidates,
-}) => {
+const Filter = () => {
+  const { state, dispatch } = useCandidates();
+  const { filter, filterCheck, candidates } = state;
+
   const handleFilterCheck = (e) => {
     if (e.target.checked) {
-      setFilterCheck([...filterCheck, e.target.value]);
+      dispatch({
+        type: "SET_FILTER_CHECK",
+        payload: [...filterCheck, e.target.value],
+      });
     } else {
-      setFilterCheck(filterCheck.filter((item) => item !== e.target.value));
+      dispatch({
+        type: "SET_FILTER_CHECK",
+        payload: filterCheck.filter((item) => item !== e.target.value),
+      });
     }
   };
+
   return (
     <>
       <div className="container__filter-percent">
-        <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+        <select
+          value={filter}
+          onChange={(e) =>
+            dispatch({ type: "SET_FILTER", payload: e.target.value })
+          }
+        >
           <option value="PERCENTAGE">Porcentaje</option>
           <option value="NUMBER">Votos</option>
         </select>
       </div>
       <div className="container__filter-check">
-        {candidates.map((name, index) => (
+        {Object.keys(candidates).map((name, index) => (
           <Checkbox
             key={index}
             value={name}
@@ -36,14 +45,6 @@ const Filter = ({
       </div>
     </>
   );
-};
-
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  setFilter: PropTypes.func.isRequired,
-  filterCheck: PropTypes.array.isRequired,
-  setFilterCheck: PropTypes.func.isRequired,
-  candidates: PropTypes.array.isRequired,
 };
 
 export default Filter;
